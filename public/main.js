@@ -1,25 +1,94 @@
-// Site checker and contact form. The page is complete without this file; it only adds behavior.
-
+// Motion and the two tools on the page. The HTML is complete without this file; it only adds behaviour.
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- header clock ---------- */
+const clock = $('#clock');
+const tickClock = () => { clock.textContent = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }); };
+tickClock();
+setInterval(tickClock, 20000);
+
+/* ---------- headline decodes itself, letter by letter ---------- */
+// Random glyphs settle into the real text from the start of the line, like a terminal resolving.
+function decode(el, delay) {
+  const target = el.textContent;
+  const glyphs = 'אבגדהוזחטיכלמנסעפצקרשת#%&@$*/<>01';
+  let frame = 0;
+  const total = target.length * 3 + 10;
+  el.textContent = target.replace(/\S/g, () => glyphs[(Math.random() * glyphs.length) | 0]);
+  setTimeout(function step() {
+    const settled = Math.floor((frame / total) * target.length * 1.15);
+    el.textContent = [...target].map((ch, i) => (ch === ' ' || i < settled ? ch : glyphs[(Math.random() * glyphs.length) | 0])).join('');
+    if (++frame <= total) requestAnimationFrame(() => setTimeout(step, 28));
+    else el.textContent = target;
+  }, delay);
+}
+if (!calm) document.querySelectorAll('[data-decode]').forEach((el, i) => decode(el, 150 + i * 380));
+
+/* ---------- custom cursor ---------- */
+const cur = $('.cur');
+if (cur && matchMedia('(pointer: fine)').matches && !calm) {
+  let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
+  addEventListener('pointermove', (e) => { x = e.clientX; y = e.clientY; });
+  (function follow() {
+    cx += (x - cx) * 0.22;
+    cy += (y - cy) * 0.22;
+    cur.style.transform = `translate(${cx}px, ${cy}px)`;
+    requestAnimationFrame(follow);
+  })();
+  document.addEventListener('pointerover', (e) => cur.classList.toggle('big', !!e.target.closest('a, button, .svc li, input, select, textarea')));
+} else if (cur) cur.remove();
+
+/* ---------- marquee speeds up with scrolling ---------- */
+const track = $('.track');
+if (track && !calm) {
+  let last = scrollY, boost = 0;
+  const anim = () => track.getAnimations()[0];
+  addEventListener('scroll', () => { boost = Math.min(8, boost + Math.abs(scrollY - last) / 40); last = scrollY; }, { passive: true });
+  (function ease() {
+    boost *= 0.92;
+    const a = anim();
+    if (a) a.playbackRate = 1 + boost;
+    requestAnimationFrame(ease);
+  })();
+}
+
+/* ---------- footer barcode (Code-39-ish stripes from the brand name) ---------- */
+(function barcode() {
+  const svg = $('#barcode');
+  if (!svg) return;
+  let x = 0, bars = '';
+  for (const ch of 'TECHFIX-AMIT-LEVI-2026') {
+    const code = ch.charCodeAt(0);
+    for (let b = 0; b < 7; b++) {
+      const w = ((code >> b) & 1) + 1;
+      if (b % 2 === 0) bars += `<rect x="${x}" y="0" width="${w * 0.9}" height="40"/>`;
+      x += w;
+    }
+    x += 1.5;
+  }
+  svg.setAttribute('viewBox', `0 0 ${x} 40`);
+  svg.innerHTML = bars;
+})();
 
 /* ---------- the remote session in the hero ---------- */
 // A short scripted session: a print job is stuck, the cursor finds it, restarts the print service, and reports.
-// The HTML already shows the fixed state, so with reduced motion (or no JS) nothing needs to happen.
+// When it's done the "fixed" stamp slams onto the ticket. The HTML already shows the fixed state.
 (function session() {
-  const screen = document.querySelector('.screen');
-  if (!screen || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const screen = $('.screen');
+  if (!screen || calm) return;
 
   const el = (id) => document.getElementById(id);
   const cursor = el('cursor'), toast = el('toast'), menu = el('menu'), progress = el('progress'), chat = el('chat'), timer = el('timer');
+  const stamp = el('stamp'), status = el('st'), hero = $('.hero');
   const jobs = [el('job1-status'), el('job2-status'), el('job3-status')];
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
   let visible = true;
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0.2 }).observe(screen);
 
-  // seconds shown on the session clock; it runs fast so the whole fix "takes" under two minutes
-  let seconds = 0, clock;
+  let seconds = 0, clockId;
   const tick = () => { seconds += 3; timer.textContent = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`; };
 
   function moveTo(target, dx = 0.35, dy = 0.5) {
@@ -33,20 +102,23 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
     await sleep(140);
     cursor.classList.remove('click');
   }
-  const status = (chip, cls, text) => { chip.className = `chip ${cls}`; chip.textContent = text; };
+  const setChip = (chip, cls, text) => { chip.className = `chip ${cls}`; chip.textContent = text; };
   const setToast = (cls, text) => { toast.className = `toast ${cls}`; toast.textContent = text; };
 
   function reset() {
     seconds = 0;
     tick();
-    status(jobs[0], 'bad', 'שגיאה');
-    status(jobs[1], 'wait', 'ממתין');
-    status(jobs[2], 'wait', 'ממתין');
+    setChip(jobs[0], 'bad', 'שגיאה');
+    setChip(jobs[1], 'wait', 'ממתין');
+    setChip(jobs[2], 'wait', 'ממתין');
     setToast('bad', 'המדפסת לא מגיבה');
     menu.hidden = true;
     progress.hidden = true;
     progress.classList.remove('run');
     chat.classList.add('out');
+    stamp.classList.remove('on', 'slam');
+    status.textContent = 'בטיפול';
+    status.classList.remove('done');
     el('job1').classList.remove('hl');
     el('menu-item').classList.remove('hl');
     const s = screen.getBoundingClientRect();
@@ -56,8 +128,8 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
 
   async function play() {
     reset();
-    clock = setInterval(tick, 300);
-    await sleep(1400);
+    clockId = setInterval(tick, 300);
+    await sleep(1600);
     await moveTo(el('job1'), 0.3);
     el('job1').classList.add('hl');
     await click();
@@ -75,19 +147,27 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
     progress.hidden = true;
     el('job1').classList.remove('hl');
     for (const chip of jobs) {
-      status(chip, 'ok', 'הודפס');
-      await sleep(380);
+      setChip(chip, 'ok', 'הודפס');
+      await sleep(320);
     }
     setToast('ok', 'המדפסת עובדת');
-    clearInterval(clock);
-    await moveTo(toast, 1.15, -0.6); // rest beside the toast, not on it
+    clearInterval(clockId);
+    await moveTo(toast, 1.15, -0.6);
+    // the payoff: stamp the ticket
+    stamp.classList.add('on', 'slam');
+    hero.classList.remove('shake');
+    void hero.offsetWidth;
+    hero.classList.add('shake');
+    status.textContent = 'תוקן';
+    status.classList.add('done');
+    await sleep(500);
     chat.classList.remove('out');
-    await sleep(5200);
+    await sleep(6000);
   }
 
-  moveTo(toast, 1.15, -0.6); // where the static (already fixed) scene leaves the cursor
-
+  moveTo(toast, 1.15, -0.6);
   (async function loop() {
+    await sleep(2400); // let the headline finish decoding first
     for (;;) {
       if (visible && !document.hidden) await play();
       else await sleep(600);
@@ -95,7 +175,7 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&l
   })();
 })();
 
-/* ---------- site checker ---------- */
+/* ---------- site checker: results print like a diagnostic log ---------- */
 const scanForm = $('#scan');
 const out = $('#scan-out');
 
@@ -105,18 +185,18 @@ scanForm.addEventListener('submit', async (e) => {
   if (!url) return scanForm.url.focus();
   const btn = scanForm.querySelector('button');
   btn.disabled = true;
-  btn.textContent = 'בודק…';
-  out.innerHTML = '';
+  btn.textContent = 'סורק…';
+  out.innerHTML = `<p>&gt; מתחבר ל-<span dir="ltr">${esc(url)}</span></p><div class="bar"><i></i></div>`;
   try {
     const r = await fetch('/api/scan?url=' + encodeURIComponent(url));
     const data = await r.json().catch(() => ({}));
-    if (!r.ok) throw new Error(data.error || 'הבדיקה נכשלה, נסה שוב.');
+    if (!r.ok) throw new Error(data.error || 'האבחון נכשל, נסה שוב.');
     render(data);
   } catch (err) {
-    out.innerHTML = `<p class="scan-err">${esc(err.message)}</p>`;
+    out.innerHTML = `<p class="scan-err">&gt; ${esc(err.message)}</p>`;
   } finally {
     btn.disabled = false;
-    btn.textContent = 'בדוק עכשיו';
+    btn.textContent = 'הרץ אבחון';
   }
 });
 
@@ -124,12 +204,21 @@ function render({ url, score, checks }) {
   const mark = (c) => (c.ok ? ['ok', '✓'] : c.warn ? ['warn', '!'] : ['bad', '✕']);
   const problems = checks.filter((c) => !c.ok).length;
   out.innerHTML = `
-    <div class="score"><b>${score}</b><span>מתוך 100 · <span dir="ltr">${esc(url)}</span></span></div>
-    <ul class="results">${checks.map((c) => {
+    <div class="score"><b id="score-n">0</b><span>/100 · <span dir="ltr">${esc(url)}</span></span></div>
+    <ul class="results">${checks.map((c, i) => {
       const [cls, sym] = mark(c);
-      return `<li><span class="mark ${cls}" aria-label="${cls === 'ok' ? 'תקין' : cls === 'warn' ? 'כדאי לשפר' : 'בעיה'}">${sym}</span><div><b>${esc(c.title)}</b><p>${esc(c.detail)}</p></div></li>`;
+      return `<li style="animation-delay:${i * 110}ms"><span class="mark ${cls}" aria-label="${cls === 'ok' ? 'תקין' : cls === 'warn' ? 'כדאי לשפר' : 'בעיה'}">${sym}</span><div><b>${esc(c.title)}</b><p>${esc(c.detail)}</p></div></li>`;
     }).join('')}</ul>
-    ${problems ? `<p class="scan-note">יש פה ${problems} דברים שאפשר לשפר. <a class="link" href="#contact">רוצה שאסתכל איתך?</a></p>` : ''}`;
+    ${problems ? `<p class="scan-note">${problems} דברים לשפר. <a href="#contact">רוצה שאסתכל איתך?</a></p>` : ''}`;
+  // count the score up
+  const n = $('#score-n');
+  if (calm) { n.textContent = score; return; }
+  const t0 = performance.now();
+  (function count(t) {
+    const k = Math.min(1, (t - t0) / 900);
+    n.textContent = Math.round(score * (1 - Math.pow(1 - k, 3)));
+    if (k < 1) requestAnimationFrame(count);
+  })(t0);
 }
 
 /* ---------- contact form ---------- */
@@ -164,7 +253,7 @@ form.addEventListener('submit', async (e) => {
     const r = await fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     if (!r.ok) throw new Error();
     form.reset();
-    show('הבקשה נשלחה. אחזור אליך תוך 24 שעות.');
+    show('הכרטיס נפתח. אחזור אליך תוך 24 שעות.');
   } catch {
     show('השליחה נכשלה. אפשר לנסות שוב או לכתוב לי למייל.', true);
   } finally {

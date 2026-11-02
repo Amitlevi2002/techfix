@@ -5,184 +5,182 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TechFix · תמיכה טכנית מרחוק, אתרים ואפליקציות</title>
 <meta name="description" content="תמיכה טכנית מרחוק לבית ולעסק, בניית אתרים ומערכות. אבחון ראשון ב-50 ₪, ורוב התקלות נפתרות באותה שיחה.">
-<meta name="theme-color" content="#f6f3ec">
-<meta property="og:title" content="TechFix · אני כבר על המסך שלך">
+<meta name="theme-color" content="#FFD60A">
+<meta property="og:title" content="TechFix · תקוע? אני כבר בפנים.">
 <meta property="og:description" content="תמיכה טכנית מרחוק, בניית אתרים ואפליקציות. עמית לוי, הנדסאי תוכנה.">
 <meta property="og:locale" content="he_IL">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <a class="skip" href="#main">דילוג לתוכן</a>
+<div class="cur" aria-hidden="true"></div>
 
 <header class="top">
-  <div class="wrap top-in">
-    <a href="#" class="brand" aria-label="TechFix, לראש העמוד">
-      <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><rect x="1.5" y="3" width="17" height="11" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 17.5h6M10 14v3.5" stroke="currentColor" stroke-width="1.6"/><path d="m6.5 9 2 2 4.5-4.5" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      TechFix
-    </a>
-    <nav aria-label="ניווט ראשי">
-      <a href="#how">איך זה עובד</a>
-      <a href="#services">שירותים</a>
-      <a href="#price">מחיר</a>
-    </nav>
-    <a href="#contact" class="btn btn-sm">דברו איתי</a>
-  </div>
+  <a href="#" class="brand" aria-label="TechFix, לראש העמוד">TECH<span>FIX</span></a>
+  <p class="ticket mono" aria-hidden="true">כרטיס <span dir="ltr">#TF-0417</span> · <span id="clock" dir="ltr">09:41</span> · <span class="st" id="st">בטיפול</span></p>
+  <a href="#contact" class="btn btn-sm">פתיחת כרטיס</a>
 </header>
 
 <main id="main">
-  <section class="hero wrap">
-    <div class="hero-text">
-      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> זמין עכשיו · לעסקים ולאנשים פרטיים</p>
-      <h1>לא צריך לחכות לטכנאי.<br>אני כבר על המסך שלך.</h1>
-      <p class="lede">רוב התקלות נפתרות <strong>באותה שיחה</strong>, בלי שאף אחד יוצא מהבית. תמיכה טכנית, בניית אתרים ואפליקציות.</p>
-      <div class="cta">
-        <a href="#contact" class="btn">ספר לי מה קורה</a>
-        <a href="#price" class="link">אבחון מרחוק ב-50 ₪ ←</a>
-      </div>
-    </div>
+  <!-- ============ hero: the repair ticket ============ -->
+  <section class="hero">
+    <p class="kicker mono">תמיכה טכנית מרחוק · אתרים · אפליקציות</p>
+    <h1 class="mega" aria-label="תקוע? אני כבר בפנים.">
+      <span class="line" data-decode aria-hidden="true">תקוע?</span>
+      <span class="line out" data-decode aria-hidden="true">אני כבר בפנים.</span>
+    </h1>
 
-    <!-- A remote session, played out: the cursor finds the stuck print job and fixes it. Without JS it shows the fixed state. -->
-    <figure class="session" id="session" aria-label="הדגמה: חיבור מרחוק למחשב ותיקון תקלה בהדפסה">
-      <div class="screen">
-        <div class="sbar">
-          <span class="live"><span class="rec" aria-hidden="true"></span> חיבור מרחוק פעיל</span>
-          <span class="timer" id="timer" dir="ltr">01:47</span>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="lede">רוב התקלות נפתרות <mark>באותה שיחה</mark>, בלי שאף אחד יוצא מהבית. אני מתחבר למסך שלך, אתה רואה כל צעד, ובסוף מקבל הסבר קצר מה נשבר ולמה.</p>
+        <div class="cta">
+          <a href="#contact" class="btn">ספר לי מה קורה</a>
+          <a href="#price" class="btn ghost">אבחון ב-50 ₪</a>
         </div>
-        <div class="desk">
-          <ul class="icons" aria-hidden="true">
-            <li><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg>המחשב</li>
-            <li><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>מסמכים</li>
-            <li><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 17H4a1 1 0 0 1-1-1v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a1 1 0 0 1-1 1h-2"/><rect x="6" y="14" width="12" height="7"/></svg>מדפסות</li>
-          </ul>
-          <div class="win">
-            <div class="win-title"><span>תור ההדפסה · HP LaserJet</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
-            <ul class="jobs">
-              <li id="job1"><span>חשבונית_אוקטובר.pdf</span><b class="chip ok" id="job1-status">הודפס</b></li>
-              <li><span>דוח_שנתי.xlsx</span><b class="chip ok" id="job2-status">הודפס</b></li>
-              <li><span>חוזה_שכירות.docx</span><b class="chip ok" id="job3-status">הודפס</b></li>
-            </ul>
-            <div class="menu" id="menu" hidden><span id="menu-item">הפעלה מחדש של שירות ההדפסה</span></div>
-            <div class="progress" id="progress" hidden><i></i></div>
+      </div>
+
+      <!-- A remote session, played out: the cursor finds the stuck print job and fixes it. Without JS it shows the fixed state. -->
+      <figure class="session" aria-label="הדגמה: חיבור מרחוק למחשב ותיקון תקלה בהדפסה">
+        <div class="screen">
+          <div class="sbar mono">
+            <span class="live"><span class="rec" aria-hidden="true"></span> REMOTE · מחובר</span>
+            <span class="timer" id="timer" dir="ltr">01:47</span>
           </div>
-          <div class="toast ok" id="toast">המדפסת עובדת</div>
+          <div class="desk">
+            <ul class="icons" aria-hidden="true">
+              <li><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg>המחשב</li>
+              <li><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>מסמכים</li>
+              <li><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 17H4a1 1 0 0 1-1-1v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a1 1 0 0 1-1 1h-2"/><rect x="6" y="14" width="12" height="7"/></svg>מדפסות</li>
+            </ul>
+            <div class="win">
+              <div class="win-title mono"><span>תור הדפסה · HP LaserJet</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+              <ul class="jobs">
+                <li id="job1"><span>חשבונית_אוקטובר.pdf</span><b class="chip ok" id="job1-status">הודפס</b></li>
+                <li><span>דוח_שנתי.xlsx</span><b class="chip ok" id="job2-status">הודפס</b></li>
+                <li><span>חוזה_שכירות.docx</span><b class="chip ok" id="job3-status">הודפס</b></li>
+              </ul>
+              <div class="menu" id="menu" hidden><span id="menu-item">הפעלה מחדש של שירות ההדפסה</span></div>
+              <div class="progress" id="progress" hidden><i></i></div>
+            </div>
+            <div class="toast ok" id="toast">המדפסת עובדת</div>
+          </div>
+          <div class="cursor" id="cursor" aria-hidden="true">
+            <svg viewBox="0 0 20 20"><path d="M3 2l13 7-6 1.6L7.4 17Z"/></svg>
+            <span>עמית</span>
+          </div>
         </div>
-        <div class="cursor" id="cursor" aria-hidden="true">
-          <svg viewBox="0 0 20 20"><path d="M3 2l13 7-6 1.6L7.4 17Z"/></svg>
-          <span>עמית</span>
-        </div>
-      </div>
-      <figcaption class="chat" id="chat"><b>עמית:</b> <span id="chat-text">סידרתי. שירות ההדפסה נתקע, הפעלתי אותו מחדש והגדרתי שיתאושש לבד אם זה יקרה שוב.</span></figcaption>
-    </figure>
-  </section>
-
-  <section class="check wrap" aria-labelledby="check-h">
-    <div class="check-card">
-      <div>
-        <h2 id="check-h" class="h3">יש לך אתר? בוא נראה מה הוא באמת עושה</h2>
-        <p class="muted">בדיקה מהירה של אבטחה, מהירות, התאמה לנייד והופעה בגוגל.</p>
-      </div>
-      <form id="scan" class="scan" novalidate>
-        <label class="sr" for="scan-url">כתובת האתר לבדיקה</label>
-        <input id="scan-url" name="url" type="text" inputmode="url" dir="ltr" placeholder="example.co.il" autocomplete="url" required>
-        <button class="btn" type="submit">בדוק עכשיו</button>
-      </form>
-      <p class="fine">הבדיקה קוראת רק את מה שכל מבקר רואה. שום דבר לא נשמר.</p>
-      <div id="scan-out" class="scan-out" aria-live="polite"></div>
+        <div class="stamp on" id="stamp" aria-hidden="true">תוקן</div>
+        <figcaption class="chat" id="chat"><b>עמית:</b> סידרתי. שירות ההדפסה נתקע, הפעלתי אותו מחדש והגדרתי שיתאושש לבד אם זה יקרה שוב.</figcaption>
+      </figure>
     </div>
+
   </section>
 
-  <section id="how" class="wrap section" aria-labelledby="how-h">
-    <h2 id="how-h">איך זה עובד</h2>
-    <ol class="steps">
-      <li>
-        <span class="n">1</span>
-        <h3>מספרים לי מה קורה</h3>
-        <p>בשפה רגילה. לא צריך לדעת להסביר מה התקלה, זה התפקיד שלי.</p>
+  <!-- ============ what gets fixed, on a loop ============ -->
+  <div class="marquee" aria-label="דברים שאני מתקן">
+    <div class="track">
+      <ul>
+        <li>מחשב איטי</li><li>מדפסת שלא מדפיסה</li><li>וויפיי שנופל</li><li>מייל שלא נשלח</li><li>וירוס</li><li>קובץ שנעלם</li><li>גיבוי ריק</li><li>אתר שלא עולה בגוגל</li>
+      </ul>
+      <ul aria-hidden="true">
+        <li>מחשב איטי</li><li>מדפסת שלא מדפיסה</li><li>וויפיי שנופל</li><li>מייל שלא נשלח</li><li>וירוס</li><li>קובץ שנעלם</li><li>גיבוי ריק</li><li>אתר שלא עולה בגוגל</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ how it works: the ticket log ============ -->
+  <section id="how" class="paper sec" aria-labelledby="how-h">
+    <div class="sec-head">
+      <p class="mono tag">יומן כרטיס</p>
+      <h2 id="how-h" class="h2">איך זה עובד</h2>
+    </div>
+    <ol class="log">
+      <li class="log-row">
+        <span class="mono t" dir="ltr">09:41:02</span>
+        <div><h3>מספרים לי מה קורה</h3><p>בשפה רגילה. לא צריך לדעת להסביר מה התקלה, זה התפקיד שלי.</p></div>
       </li>
-      <li>
-        <span class="n">2</span>
-        <h3>לחיצה אחת, ואני על המסך</h3>
-        <p>שולח קישור, אתה מאשר, ואני רואה מה שאתה רואה. השליטה נשארת אצלך ואפשר לנתק בכל רגע.</p>
+      <li class="log-row">
+        <span class="mono t" dir="ltr">09:42:30</span>
+        <div><h3>לחיצה אחת, ואני על המסך</h3><p>שולח קישור, אתה מאשר, ואני רואה מה שאתה רואה. השליטה נשארת אצלך ואפשר לנתק בכל רגע.</p></div>
       </li>
-      <li>
-        <span class="n">3</span>
-        <h3>מסודר, ואתה מבין למה</h3>
-        <p>פותר את התקלה ומסביר בקצרה מה גרם לה, כדי שהיא לא תחזור בעוד חודש.</p>
+      <li class="log-row">
+        <span class="mono t" dir="ltr">09:46:17</span>
+        <div><h3>מסודר, ואתה מבין למה</h3><p>פותר את התקלה ומסביר בקצרה מה גרם לה, כדי שהיא לא תחזור בעוד חודש.</p></div>
       </li>
     </ol>
   </section>
 
-  <section id="services" class="wrap section" aria-labelledby="svc-h">
-    <h2 id="svc-h">מה אני עושה</h2>
-    <p class="muted section-sub">אותו שירות למחשב ביתי ולמשרד עם עשר עמדות.</p>
-    <div class="grid">
-      <article>
-        <h3>תמיכה טכנית מרחוק</h3>
-        <p>מחשב איטי, מדפסת שלא מדפיסה, קובץ שנעלם, וירוס, תוכנה שקרסה, מייל שלא נשלח. מתחבר למסך ופותר בזמן שאתה צופה.</p>
-      </article>
-      <article>
-        <h3>רשת, אינטרנט ו-Wi-Fi</h3>
-        <p>חיבור שנופל, קליטה חלשה בחדר האחורי, מדפסת שהמחשבים לא מוצאים. מגדיר את הרשת כך שתעבוד ולא תדרוש טיפול כל שבוע.</p>
-      </article>
-      <article>
-        <h3>גיבוי ואבטחת מידע</h3>
-        <p>גיבוי שבאמת עובד, ולא כזה שמגלים שהוא ריק דווקא ביום שצריך אותו. סיסמאות, עדכונים, והגנה בסיסית שכל אחד צריך.</p>
-      </article>
-      <article>
-        <h3>אתרים, אפליקציות ומערכות</h3>
-        <p>אתר שמביא פניות ולא רק נראה טוב, מערכת לניהול לקוחות, או אוטומציה שחוסכת שעות עבודה. הנדסאי תוכנה, לא מתקין תבניות.</p>
-      </article>
+  <!-- ============ services ============ -->
+  <section id="services" class="sec ink" aria-labelledby="svc-h">
+    <div class="sec-head">
+      <p class="mono tag">מה אני עושה</p>
+      <h2 id="svc-h" class="h2">אותו שירות למחשב ביתי ולמשרד עם עשר עמדות</h2>
+    </div>
+    <ul class="svc">
+      <li><span class="mono n">01</span><h3>תמיכה טכנית מרחוק</h3><p>מחשב איטי, מדפסת, קובץ שנעלם, וירוס, מייל שלא נשלח. מתחבר ופותר בזמן שאתה צופה.</p></li>
+      <li><span class="mono n">02</span><h3>רשת, אינטרנט ו-Wi-Fi</h3><p>חיבור שנופל, קליטה חלשה בחדר האחורי, מדפסת שהמחשבים לא מוצאים. מגדיר כך שזה יעבוד.</p></li>
+      <li><span class="mono n">03</span><h3>גיבוי ואבטחת מידע</h3><p>גיבוי שבאמת עובד, סיסמאות, עדכונים, והגנה בסיסית שכל אחד צריך.</p></li>
+      <li><span class="mono n">04</span><h3>אתרים, אפליקציות ומערכות</h3><p>אתר שמביא פניות, מערכת לניהול לקוחות, אוטומציה שחוסכת שעות. הנדסאי תוכנה, לא מתקין תבניות.</p></li>
+    </ul>
+  </section>
+
+  <!-- ============ site checker as a diagnostic ============ -->
+  <section class="sec diag" aria-labelledby="check-h">
+    <div class="sec-head">
+      <p class="mono tag">כלי חינמי</p>
+      <h2 id="check-h" class="h2">יש לך אתר? בוא נריץ עליו אבחון</h2>
+      <p class="sub">אבטחה, מהירות, התאמה לנייד והופעה בגוגל. קורא רק את מה שכל מבקר רואה, ושום דבר לא נשמר.</p>
+    </div>
+    <div class="term">
+      <form id="scan" class="scan" novalidate>
+        <label class="sr" for="scan-url">כתובת האתר לבדיקה</label>
+        <span class="mono prompt" dir="ltr">$ scan</span>
+        <input id="scan-url" name="url" type="text" inputmode="url" dir="ltr" placeholder="example.co.il" autocomplete="url" required>
+        <button class="btn" type="submit">הרץ אבחון</button>
+      </form>
+      <div id="scan-out" class="scan-out" aria-live="polite"></div>
     </div>
   </section>
 
-  <section class="wrap section why" aria-label="למה לעבוד איתי">
-    <div>
-      <h3>מגיע אליך בדקות</h3>
-      <p>אין נסיעה, אין המתנה ליום שלישי. פותחים חיבור ומתחילים לעבוד.</p>
-    </div>
-    <div>
-      <h3>אתה רואה הכול</h3>
-      <p>המסך שלך פתוח מולך לאורך כל העבודה. שום דבר לא קורה מאחורי הגב שלך.</p>
-    </div>
-    <div>
-      <h3>בונה, לא רק מתקן</h3>
-      <p>אני גם בונה מערכות. זה אומר שאני מבין למה משהו נשבר, ולא רק איך לעקוף את הבעיה.</p>
-    </div>
-  </section>
-
-  <section id="price" class="wrap section" aria-labelledby="price-h">
+  <!-- ============ price: the ticket stub ============ -->
+  <section id="price" class="sec paper" aria-labelledby="price-h">
     <div class="price">
-      <div>
-        <h2 id="price-h">כמה זה עולה?</h2>
-        <p class="muted">בלי הפתעות ובלי כוכביות.</p>
-      </div>
-      <div class="price-body">
-        <p class="amount"><span>אבחון מרחוק</span> <b>50 ₪</b></p>
-        <p>מתחברים, אני עובר על המחשב ואומר לך בדיוק מה הבעיה, מה צריך לעשות וכמה זה יעלה. אתה יוצא מהשיחה עם תשובה, גם אם תחליט לא להמשיך.</p>
+      <div class="sec-head">
+        <p class="mono tag">מחיר</p>
+        <h2 id="price-h" class="h2">בלי הפתעות ובלי כוכביות</h2>
         <ul class="ticks">
           <li>ממשיכים לתיקון באותה שיחה? הסכום נכנס לחשבון.</li>
-          <li>אתר, אפליקציה או ליווי טכני קבוע: מדברים קודם, ואז מקבלים הצעת מחיר לפי העבודה בפועל.</li>
+          <li>אתר, אפליקציה או ליווי קבוע: מדברים קודם ומקבלים הצעת מחיר לפי העבודה בפועל.</li>
         </ul>
+      </div>
+      <div class="stub">
+        <p class="mono">אבחון מרחוק</p>
+        <p class="amount"><b>50</b><span>₪</span></p>
+        <p>מתחברים, אני עובר על המחשב ואומר לך מה הבעיה, מה צריך לעשות וכמה זה יעלה. יוצאים עם תשובה, גם אם תחליט לא להמשיך.</p>
+        <div class="perf" aria-hidden="true"></div>
+        <p class="mono small">תקף לבית ולעסק · <span dir="ltr">#TF-50</span></p>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="wrap section" aria-labelledby="contact-h">
+  <!-- ============ contact: open a ticket ============ -->
+  <section id="contact" class="sec yellow" aria-labelledby="contact-h">
     <div class="contact">
-      <div>
-        <h2 id="contact-h">ספר לי מה קורה</h2>
-        <p class="muted">משאירים פרטים, ואני חוזר תוך 24 שעות לשיחה קצרה. בלי עלות ובלי התחייבות.</p>
-        <p class="muted small">או ישירות במייל: <a href="mailto:Amitlevi201002@gmail.com" dir="ltr">Amitlevi201002@gmail.com</a></p>
+      <div class="sec-head">
+        <p class="mono tag">פתיחת כרטיס</p>
+        <h2 id="contact-h" class="h2 big">ספר לי מה קורה</h2>
+        <p class="sub">משאירים פרטים, ואני חוזר תוך 24 שעות. בלי עלות ובלי התחייבות.</p>
+        <p class="sub small">או במייל: <a href="mailto:Amitlevi201002@gmail.com" dir="ltr">Amitlevi201002@gmail.com</a></p>
       </div>
       <!-- data-endpoint: a Formspree form URL. Left empty, the form opens the visitor's mail app instead. -->
       <form id="contact-form" class="form" data-endpoint="" data-mailto="Amitlevi201002@gmail.com">
-        <label>שם מלא<input name="name" required autocomplete="name"></label>
-        <label>טלפון<input name="phone" type="tel" required autocomplete="tel" dir="ltr" pattern="[0-9+\-\s]{9,15}"></label>
-        <label>במה מדובר
+        <label><span class="mono">שם מלא</span><input name="name" required autocomplete="name"></label>
+        <label><span class="mono">טלפון</span><input name="phone" type="tel" required autocomplete="tel" dir="ltr" pattern="[0-9+\-\s]{9,15}"></label>
+        <label><span class="mono">במה מדובר</span>
           <select name="topic" required>
             <option value="">בחר נושא</option>
             <option>תקלה במחשב או במדפסת</option>
@@ -195,8 +193,7 @@
             <option>משהו אחר</option>
           </select>
         </label>
-        <label class="full">כמה מילים על המצב<textarea name="message" rows="4"></textarea></label>
-        <label>מתי נוח שאחזור
+        <label><span class="mono">מתי נוח שאחזור</span>
           <select name="when">
             <option>בכל שעה</option>
             <option>בוקר, 8:00–12:00</option>
@@ -204,10 +201,11 @@
             <option>ערב, 16:00–20:00</option>
           </select>
         </label>
+        <label class="full"><span class="mono">כמה מילים על המצב</span><textarea name="message" rows="4"></textarea></label>
         <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="full form-end">
-          <button class="btn" type="submit">שלחו ואחזור אליכם</button>
-          <p class="fine">הפרטים מגיעים אליי בלבד. אין דיוור ואין שיתוף עם צד שלישי.</p>
+          <button class="btn" type="submit">פתח כרטיס</button>
+          <p class="mono small">הפרטים מגיעים אליי בלבד. אין דיוור ואין שיתוף.</p>
         </div>
         <p id="form-msg" class="full form-msg" role="status" hidden></p>
       </form>
@@ -215,9 +213,12 @@
   </section>
 </main>
 
-<footer class="wrap foot">
-  <span>TechFix · עמית לוי, הנדסאי תוכנה</span>
-  <a href="https://github.com/Amitlevi2002" dir="ltr">GitHub</a>
+<footer class="foot">
+  <svg class="barcode" id="barcode" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true"></svg>
+  <div class="foot-row mono">
+    <span>TechFix · עמית לוי, הנדסאי תוכנה</span>
+    <a href="https://github.com/Amitlevi2002" dir="ltr">GitHub ↗</a>
+  </div>
 </footer>
 
 <script src="main.js" defer></script>
