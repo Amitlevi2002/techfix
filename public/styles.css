@@ -31,6 +31,7 @@ ul, ol { padding: 0; list-style: none; }
 /* custom cursor: an inverting dot on devices with a real pointer */
 .cur { position: fixed; z-index: 60; inset: 0 auto auto 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: #fff; mix-blend-mode: difference; pointer-events: none; transition: width .2s, height .2s, margin .2s; display: none; }
 @media (pointer: fine) { .cur { display: block; } }
+.cur:not(.live) { opacity: 0; }
 .cur.big { width: 56px; height: 56px; margin: -28px 0 0 -28px; }
 
 /* ---------- header ---------- */
@@ -108,7 +109,8 @@ ul, ol { padding: 0; list-style: none; }
 .toast.bad { background: var(--red); color: #fff; }
 .toast.ok { background: var(--y); color: var(--ink); }
 .toast.out { opacity: 0; transform: translateY(8px); }
-.cursor { position: absolute; left: 0; top: 0; z-index: 5; display: flex; align-items: flex-start; gap: 2px; transform: translate(var(--x, 60%), var(--y, 60%)); transition: transform .9s cubic-bezier(.45, .05, .25, 1); pointer-events: none; }
+/* left/top place the cursor beside the toast in the static scene; the script zeroes them and drives transform */
+.cursor { position: absolute; left: 62%; top: 76%; z-index: 5; display: flex; align-items: flex-start; gap: 2px; transform: translate(var(--x, 0), var(--y, 0)); transition: transform .9s cubic-bezier(.45, .05, .25, 1); pointer-events: none; }
 .cursor svg { width: 22px; height: 22px; fill: var(--red); stroke: #fff; stroke-width: 1.3; transition: transform .12s; }
 .cursor.click svg { transform: scale(.78); }
 .cursor span { margin-top: 15px; background: var(--red); color: #fff; font: 700 11px var(--mono); padding: 2px 7px; }

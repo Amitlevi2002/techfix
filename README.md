@@ -2,6 +2,8 @@
 
 The site for my freelance work: remote tech support, home and small-office networks, backups, and websites. It's in Hebrew, and it includes a working **website checker** that anyone can try.
 
+The page is designed as a repair ticket: safety yellow, a condensed Hebrew display face, a ticket number and a barcode. In the hero, a scripted remote session finds a stuck print job and fixes it, and a "fixed" stamp lands on the screen. Sections reveal with native CSS scroll-driven animations, and all motion stops for visitors who prefer reduced motion.
+
 **Live:** https://techfix-puce.vercel.app
 
 ![TechFix home page](docs/desktop.png)

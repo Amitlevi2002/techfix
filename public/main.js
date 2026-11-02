@@ -31,7 +31,7 @@ if (!calm) document.querySelectorAll('[data-decode]').forEach((el, i) => decode(
 const cur = $('.cur');
 if (cur && matchMedia('(pointer: fine)').matches && !calm) {
   let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
-  addEventListener('pointermove', (e) => { x = e.clientX; y = e.clientY; });
+  addEventListener('pointermove', (e) => { x = e.clientX; y = e.clientY; cur.classList.add('live'); });
   (function follow() {
     cx += (x - cx) * 0.22;
     cy += (y - cy) * 0.22;
@@ -165,6 +165,7 @@ if (track && !calm) {
     await sleep(6000);
   }
 
+  cursor.style.left = cursor.style.top = '0';
   moveTo(toast, 1.15, -0.6);
   (async function loop() {
     await sleep(2400); // let the headline finish decoding first
