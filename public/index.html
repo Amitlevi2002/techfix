@@ -35,13 +35,48 @@
 
 <main id="main">
   <section class="hero wrap">
-    <p class="eyebrow"><span class="dot" aria-hidden="true"></span> זמין עכשיו · לעסקים ולאנשים פרטיים</p>
-    <h1>לא צריך לחכות לטכנאי.<br>אני כבר על המסך שלך.</h1>
-    <p class="lede">רוב התקלות נפתרות <strong>באותה שיחה</strong>, בלי שאף אחד יוצא מהבית. תמיכה טכנית, בניית אתרים ואפליקציות.</p>
-    <div class="cta">
-      <a href="#contact" class="btn">ספר לי מה קורה</a>
-      <a href="#price" class="link">אבחון מרחוק ב-50 ₪ ←</a>
+    <div class="hero-text">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span> זמין עכשיו · לעסקים ולאנשים פרטיים</p>
+      <h1>לא צריך לחכות לטכנאי.<br>אני כבר על המסך שלך.</h1>
+      <p class="lede">רוב התקלות נפתרות <strong>באותה שיחה</strong>, בלי שאף אחד יוצא מהבית. תמיכה טכנית, בניית אתרים ואפליקציות.</p>
+      <div class="cta">
+        <a href="#contact" class="btn">ספר לי מה קורה</a>
+        <a href="#price" class="link">אבחון מרחוק ב-50 ₪ ←</a>
+      </div>
     </div>
+
+    <!-- A remote session, played out: the cursor finds the stuck print job and fixes it. Without JS it shows the fixed state. -->
+    <figure class="session" id="session" aria-label="הדגמה: חיבור מרחוק למחשב ותיקון תקלה בהדפסה">
+      <div class="screen">
+        <div class="sbar">
+          <span class="live"><span class="rec" aria-hidden="true"></span> חיבור מרחוק פעיל</span>
+          <span class="timer" id="timer" dir="ltr">01:47</span>
+        </div>
+        <div class="desk">
+          <ul class="icons" aria-hidden="true">
+            <li><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg>המחשב</li>
+            <li><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>מסמכים</li>
+            <li><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 17H4a1 1 0 0 1-1-1v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a1 1 0 0 1-1 1h-2"/><rect x="6" y="14" width="12" height="7"/></svg>מדפסות</li>
+          </ul>
+          <div class="win">
+            <div class="win-title"><span>תור ההדפסה · HP LaserJet</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+            <ul class="jobs">
+              <li id="job1"><span>חשבונית_אוקטובר.pdf</span><b class="chip ok" id="job1-status">הודפס</b></li>
+              <li><span>דוח_שנתי.xlsx</span><b class="chip ok" id="job2-status">הודפס</b></li>
+              <li><span>חוזה_שכירות.docx</span><b class="chip ok" id="job3-status">הודפס</b></li>
+            </ul>
+            <div class="menu" id="menu" hidden><span id="menu-item">הפעלה מחדש של שירות ההדפסה</span></div>
+            <div class="progress" id="progress" hidden><i></i></div>
+          </div>
+          <div class="toast ok" id="toast">המדפסת עובדת</div>
+        </div>
+        <div class="cursor" id="cursor" aria-hidden="true">
+          <svg viewBox="0 0 20 20"><path d="M3 2l13 7-6 1.6L7.4 17Z"/></svg>
+          <span>עמית</span>
+        </div>
+      </div>
+      <figcaption class="chat" id="chat"><b>עמית:</b> <span id="chat-text">סידרתי. שירות ההדפסה נתקע, הפעלתי אותו מחדש והגדרתי שיתאושש לבד אם זה יקרה שוב.</span></figcaption>
+    </figure>
   </section>
 
   <section class="check wrap" aria-labelledby="check-h">
