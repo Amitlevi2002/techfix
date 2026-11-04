@@ -239,3 +239,6 @@ ul, ol { padding: 0; list-style: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* log timestamps stay above 4.5:1 on the paper */
+.log-row .t{color:#bf1d17}

@@ -21,6 +21,10 @@ The interesting part is that **the server fetches a URL that a stranger typed.**
 
 A known gap: the address is checked during the DNS lookup, and `fetch` then resolves the name again, so a hostile DNS server could still answer differently the second time (DNS rebinding). Closing that would mean connecting to the already-checked IP directly. For a free checker that only returns a summary and never the page's contents, I decided the risk was acceptable, but it's the first thing I'd change before using this code anywhere sensitive.
 
+## Accessibility, languages and legal pages
+
+Every page has an accessibility menu (text size, high contrast, highlighted links, readable font, stopped animations, grayscale), a skip link and full keyboard use, built toward Israeli Standard 5568 (WCAG 2.0 AA). The screens were checked with axe. A button switches between Hebrew and English, including the page direction, and there are privacy, terms and accessibility statement pages (`public/site-kit.js`, `public/site-i18n.js`).
+
 ## The page
 
 Plain HTML, CSS and a small script. All the content is in the HTML, so the page works with JavaScript off and search engines read all of it. The script only adds the checker and the contact form.
