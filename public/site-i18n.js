@@ -2,6 +2,7 @@
 window.SITE_KIT = {
   base: 'he',
   name: 'TechFix',
+  noSkip: true,
   note: { he: 'האתר שומר רק את העדפות התצוגה שלך בדפדפן, ולא משתמש בעוגיות פרסום או מעקב.', en: 'This site only keeps your display preferences in your browser. It uses no advertising or tracking cookies.' },
   dict: {
     "עמית": "Amit", "בלי שאף אחד יוצא מהבית. אני מתחבר למסך שלך, אתה רואה כל צעד, ובסוף מקבל הסבר קצר מה נשבר ולמה.": "without anyone leaving the house. I connect to your screen, you see every step, and at the end you get a short explanation of what broke and why.",

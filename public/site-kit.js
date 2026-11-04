@@ -146,7 +146,7 @@
     document.head.appendChild(st);
 
     const main = document.querySelector('main,[role=main],#root,#app');
-    if (main) {
+    if (main && !CFG.noSkip) {
       if (!main.id) main.id = 'kit-main';
       main.setAttribute('tabindex', '-1');
       const sk = document.createElement('a');
